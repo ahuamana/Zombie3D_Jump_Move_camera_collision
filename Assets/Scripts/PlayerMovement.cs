@@ -37,8 +37,8 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rigidbody = GetComponent<Rigidbody>();
-        anim = GetComponent<Animator>();
+        rigidbody = gameObject.GetComponent<Rigidbody>();
+        anim = gameObject.GetComponent<Animator>();
         //groundedCheck = GameObject.Find("Groundcheck").transform;
         //knifeSpawn = GameObject.Find("KnifeSpawn").transform;
         
