@@ -12,12 +12,13 @@ public class PlayerMovement : MonoBehaviour
     //animaciones
     private Animator anim;
 
-    //public float jumpSpeed = 500.0f;
+    //velocidad de salto
+    public float jumpSpeed = 500.0f;
 
-    //public bool grounded = false;
-    //public Transform groundedCheck;
-    //public float groundRadious = 0.2f;
-    //public LayerMask whatIsground;
+    public bool grounded = false;
+    public Transform groundedCheck;
+    public float groundRadious = 0.2f;
+    public LayerMask whatIsground;
 
     //public float knifeSpeed = 500.0f;
     //public Transform knifeSpawn;
@@ -29,9 +30,7 @@ public class PlayerMovement : MonoBehaviour
     //    clone = Instantiate(knifePrefab, knifeSpawn.position, knifeSpawn.rotation) as Rigidbody;
     //    clone.AddForce(knifeSpawn.transform.right * knifeSpeed);
     //}
-    
 
-    
     
 
     // Start is called before the first frame update
@@ -39,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rigidbody = gameObject.GetComponent<Rigidbody>();
         anim = gameObject.GetComponent<Animator>();
-        //groundedCheck = GameObject.Find("Groundcheck").transform;
+        groundedCheck = GameObject.Find("GroundCheck").transform;
         //knifeSpawn = GameObject.Find("KnifeSpawn").transform;
         
     }
@@ -49,22 +48,25 @@ public class PlayerMovement : MonoBehaviour
     {
         moveDireccion = Input.GetAxis("Horizontal");
 
-
         //if (Input.GetButtonDown("Jump") && grounded)
-        //{
-        //    //rigidbodyConstraints = RigidbodyConstraints.None;
-        //    rigidbody.AddForce(new Vector2(0, jumpSpeed));
-        //    //animacion salto
-        //    anim.SetTrigger("isJumping");
-        //}
+        if (Input.GetButtonDown("Jump") && grounded)
+        {
+            //rigidbodyConstraints = RigidbodyConstraints.None;
+            rigidbody.AddForce(new Vector2(0, jumpSpeed));
+            //animacion salto
+            //anim.SetTrigger("isJumping");
+        }
     }
 
     private void FixedUpdate()
     {
-        //grounded = Physics2D.OverlapCircle(groundedCheck.position, groundRadious, whatIsground);
+        //Verificar que esta pisando
+        grounded = Physics2D.OverlapCircle(groundedCheck.position, groundRadious, whatIsground);
         ////rigidbodyConstraints = RigidbodyConstraints.FreezePositionY;
 
-        rigidbody.velocity = new Vector2(moveDireccion*maxSpeed,rigidbody.velocity.y);
+        rigidbody.velocity = new Vector2(moveDireccion*maxSpeed,rigidbody.velocity.y * Time.deltaTime);
+        
+        
 
 
         if (moveDireccion > 0.0f && !facingRight)
