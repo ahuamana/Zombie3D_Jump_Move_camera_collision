@@ -9,6 +9,9 @@ public class PlayerMovement : MonoBehaviour
     public float moveDireccion;
     private new Rigidbody rigidbody;
 
+    //animaciones
+    private Animator anim;
+
     //public float jumpSpeed = 500.0f;
 
     //public bool grounded = false;
@@ -28,14 +31,14 @@ public class PlayerMovement : MonoBehaviour
     //}
     
 
-    //animaciones
-    //private Animator anim;
+    
+    
 
     // Start is called before the first frame update
     void Start()
     {
         rigidbody = GetComponent<Rigidbody>();
-        //anim = GetComponent<Animator>();
+        anim = GetComponent<Animator>();
         //groundedCheck = GameObject.Find("Groundcheck").transform;
         //knifeSpawn = GameObject.Find("KnifeSpawn").transform;
         
@@ -79,7 +82,8 @@ public class PlayerMovement : MonoBehaviour
 
         ////asignar la velocidad
         ////moveDireccion solo devuelve si positivo si avanza y negativo si no avanza
-        //anim.SetFloat("Speed", Mathf.Abs(moveDireccion));
+        anim.SetFloat("Speed", Mathf.Abs(moveDireccion));
+        //Debug.Log(moveDireccion);
 
         //if (Input.GetButtonDown("Fire1"))
         //{
@@ -87,7 +91,7 @@ public class PlayerMovement : MonoBehaviour
         //    Attack();
         //}
 
-        //Debug.Log("DatoVelocidad: "+ Mathf.Abs(moveDireccion));
+
 
     }
 
