@@ -32,7 +32,7 @@ public class SmoothFollow : MonoBehaviour
     bool CheckYmargin()
     {
 
-        return Mathf.Abs(transform.position.y - cameraTarget.position.y) > xMargin;
+        return Mathf.Abs(transform.position.y - cameraTarget.position.y) > yMargin;
 
     }
 
