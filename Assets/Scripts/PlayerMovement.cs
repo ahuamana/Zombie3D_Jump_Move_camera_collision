@@ -53,8 +53,9 @@ public class PlayerMovement : MonoBehaviour
         {
             //rigidbodyConstraints = RigidbodyConstraints.None;
             rigidbody.AddForce(new Vector2(0, jumpSpeed));
+            
             //animacion salto
-            //anim.SetTrigger("isJumping");
+            anim.SetTrigger("isJumping");
         }
     }
 
@@ -62,7 +63,7 @@ public class PlayerMovement : MonoBehaviour
     {
         //Verificar que esta pisando
         grounded = Physics2D.OverlapCircle(groundedCheck.position, groundRadious, whatIsground);
-        ////rigidbodyConstraints = RigidbodyConstraints.FreezePositionY;
+        
 
         rigidbody.velocity = new Vector2(moveDireccion*maxSpeed,rigidbody.velocity.y * Time.deltaTime);
         
