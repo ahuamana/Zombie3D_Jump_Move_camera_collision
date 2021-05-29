@@ -20,18 +20,19 @@ public class PlayerMovement : MonoBehaviour
     public float groundRadious = 0.2f;
     public LayerMask whatIsground;
 
-    //public float knifeSpeed = 500.0f;
-    //public Transform knifeSpawn;
-    //public Rigidbody knifePrefab;
-    //Rigidbody clone;
+    public float knifeSpeed = 500.0f;
+    public Transform knifeSpawn;
+    public Rigidbody knifePrefab;
+    Rigidbody clone;
 
-    //void Attack() {
+    void Attack()
+    {
 
-    //    clone = Instantiate(knifePrefab, knifeSpawn.position, knifeSpawn.rotation) as Rigidbody;
-    //    clone.AddForce(knifeSpawn.transform.right * knifeSpeed);
-    //}
+        clone = Instantiate(knifePrefab, knifeSpawn.position, knifeSpawn.rotation) as Rigidbody;
+        clone.AddForce(knifeSpawn.transform.right * knifeSpeed);
+    }
 
-    
+
 
     // Start is called before the first frame update
     void Start()
@@ -39,8 +40,8 @@ public class PlayerMovement : MonoBehaviour
         rigidbody = gameObject.GetComponent<Rigidbody>();
         anim = gameObject.GetComponent<Animator>();
         groundedCheck = GameObject.Find("GroundCheck").transform;
-        //knifeSpawn = GameObject.Find("KnifeSpawn").transform;
-        
+        knifeSpawn = GameObject.Find("KnifeSpawn").transform;
+
     }
 
     // Update is called once per frame
@@ -88,11 +89,13 @@ public class PlayerMovement : MonoBehaviour
         anim.SetFloat("Speed", Mathf.Abs(moveDireccion));
         //Debug.Log(moveDireccion);
 
-        //if (Input.GetButtonDown("Fire1"))
-        //{
 
-        //    Attack();
-        //}
+        //Atacar si presiona el boton fire1 ( CTRL )
+        if (Input.GetButtonDown("Fire1"))
+        {
+
+            Attack();
+        }
 
 
 
