@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -17,13 +19,20 @@ public class PlayerMovement : MonoBehaviour
 
     public bool grounded = false;
     public Transform groundedCheck;
-    public float groundRadious = 0.2f;
+    public float groundDistance = 0.5f;
     public LayerMask whatIsground;
 
     public float knifeSpeed = 500.0f;
     public Transform knifeSpawn;
     public Rigidbody knifePrefab;
     Rigidbody clone;
+
+    private float rotatingInput;
+
+
+    
+    public float distToGround = 1f;
+    
 
     void Attack()
     {
@@ -47,7 +56,8 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        moveDireccion = Input.GetAxis("Horizontal");
+        rotatingInput = Input.GetAxis("Horizontal");
+        moveDireccion = Input.GetAxis("Vertical");
 
         //if (Input.GetButtonDown("Jump") && grounded)
         if (Input.GetButtonDown("Jump") && grounded)
@@ -58,28 +68,34 @@ public class PlayerMovement : MonoBehaviour
             //animacion salto
             anim.SetTrigger("isJumping");
         }
+
+        
+        transform.Rotate(Vector3.up * Time.deltaTime * 250f * rotatingInput);
     }
 
     private void FixedUpdate()
     {
+        Grounded();
         //Verificar que esta pisando
-        grounded = Physics2D.OverlapCircle(groundedCheck.position, groundRadious, whatIsground);
+        //grounded = Physics2D.OverlapCircle(groundedCheck.position, 100f, whatIsground);
+        grounded = Physics.Raycast(transform.position, Vector3.down, groundDistance);
         
 
-        rigidbody.velocity = new Vector2(moveDireccion*maxSpeed,rigidbody.velocity.y * Time.deltaTime);
-        
-        
+        transform.Translate(Vector3.forward * Time.deltaTime * maxSpeed * moveDireccion);
+        //rigidbody.velocity = new Vector3(,rigidbody.velocity.y * Time.deltaTime);
+        //rigidbody.velocity = Vector3.forward * Time.deltaTime * maxSpeed * moveDireccion;
+
 
 
         if (moveDireccion > 0.0f && !facingRight)
         {
-            Flip();
+            //Flip();
 
         } else {
 
             if (moveDireccion < 0.0f && facingRight)
             {
-                Flip();
+                //Flip();
             }
 
         }
@@ -87,7 +103,7 @@ public class PlayerMovement : MonoBehaviour
         ////asignar la velocidad
         ////moveDireccion solo devuelve si positivo si avanza y negativo si no avanza
         anim.SetFloat("Speed", Mathf.Abs(moveDireccion));
-        //Debug.Log(moveDireccion);
+        Debug.Log(moveDireccion);
 
 
         //Atacar si presiona el boton fire1 ( CTRL )
@@ -101,10 +117,17 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-        void Flip() {
+    private void Grounded()
+    {
+        
+    }
+
+    void Flip() {
         facingRight = !facingRight; //si esta mirando
         transform.Rotate(Vector3.up,180.0f, Space.World);//gira al eje y
         //transform.Rotate(new Vector3(0,1,0), 180.0f, Space.World);//gira al eje y
     }
+
+    
 
 }

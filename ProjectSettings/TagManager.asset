@@ -6,6 +6,7 @@ TagManager:
   tags:
   - CameraTarget
   - GroundCheck
+  - Caja
   layers:
   - Default
   - TransparentFX

@@ -12,6 +12,12 @@ ModelImporter:
   - first:
       74: -3396936121368778185
     second: player_Jump
+  - first:
+      74: -998496362607748373
+    second: Take
+  - first:
+      74: -998496362607748373
+    second: Take
   externalObjects: {}
   materials:
     materialImportMode: 1
