@@ -9,6 +9,7 @@ TagManager:
   - Caja
   - Monedas
   - CajaRed
+  - CajaGreen
   layers:
   - Default
   - TransparentFX
