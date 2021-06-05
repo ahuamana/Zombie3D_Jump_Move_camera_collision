@@ -27,7 +27,7 @@ public class PlatformMovil : MonoBehaviour
         //Calcula la distancia entre dos vectores
         if (Vector3.Distance(platformRB.position, platformPositions[nextPosition].position) <= 0)
         {
-            actualPosition = nextPosition;
+            //actualPosition = nextPosition;
             nextPosition++;
 
             //

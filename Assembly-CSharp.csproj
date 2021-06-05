@@ -70,6 +70,7 @@
     <Compile Include="Assets\Scripts\DestruirCaja.cs" />
     <Compile Include="Assets\Scripts\FollowPlayer.cs" />
     <Compile Include="Assets\Scripts\Monedas\MonedasCount.cs" />
+    <Compile Include="Assets\Scripts\Monedas\MovementMoney.cs" />
     <Compile Include="Assets\Scripts\MoverEsfera.cs" />
     <Compile Include="Assets\Scripts\PlataformasMoviles\PlatformMovil.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
